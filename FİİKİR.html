@@ -1,0 +1,604 @@
+<!DOCTYPE HTML>
+<!--
+    Fikir Kulübü Özel Tasarımı
+    Topkapı Üniversitesi Fikir Kulübü için "Aile ve Sosyal Network" vizyonuyla hazırlanmıştır.
+-->
+<html>
+    <head>
+        <title>Fikir Kulübü | Topkapı Üniversitesi</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+        
+        <!-- Özel Fontlar: Syne (Başlıklar) ve Outfit (Metinler) -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+
+        <!-- Fikir Kulübü Özel Stil İlaveleri -->
+        <style>
+            /* Gece Mavisinden Siyaha Sabit Arka Plan Geçişi */
+            body {
+                background: linear-gradient(135deg, #0b132b 0%, #000000 100%) !important;
+                background-attachment: fixed !important;
+            }
+            
+            body, input, select, textarea {
+                font-family: 'Outfit', sans-serif !important;
+                color: #e6edf3;
+            }
+
+            /* --- TÜRKÇE KARAKTER KESİLME HATASI KESİN ÇÖZÜMÜ --- */
+            h1, h2, h3, h4, h5, h6, strong, b {
+                font-family: 'Syne', sans-serif !important;
+                color: #ffffff;
+                letter-spacing: -0.02em;
+                line-height: 1.6 !important; /* Satır yüksekliği artırıldı */
+                padding-top: 12px !important; /* Üstten ekstra boşluk bırakıldı */
+                padding-bottom: 5px !important;
+                overflow: visible !important;
+                display: block; /* Flex baskısı kaldırıldı */
+            }
+            
+            /* --- ÖZELLEŞTİRİLMİŞ SOL PANEL (SCROLL EKLENDİ) --- */
+            #header {
+                background: linear-gradient(180deg, rgba(11, 19, 43, 0.9) 0%, rgba(0, 0, 0, 0.9) 100%);
+                border-right: 1px solid rgba(255,255,255,0.05);
+                backdrop-filter: blur(5px);
+                overflow-y: auto !important; 
+                scrollbar-width: thin; 
+                scrollbar-color: rgba(0, 168, 255, 0.5) transparent;
+            }
+            
+            /* Chrome, Edge ve Safari için Sol Panel Scroll Tasarımı */
+            #header::-webkit-scrollbar {
+                width: 6px;
+            }
+            #header::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            #header::-webkit-scrollbar-thumb {
+                background-color: rgba(0, 168, 255, 0.4);
+                border-radius: 10px;
+            }
+            #header::-webkit-scrollbar-thumb:hover {
+                background-color: rgba(0, 168, 255, 0.8);
+            }
+
+            #header h1 {
+                font-size: 1.5em;
+                color: #e6edf3;
+            }
+            #header h1 strong {
+                color: #00a8ff;
+                text-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
+            }
+
+            /* Logo Arka Plan Griliğini Kaldırma */
+            #header .image.avatar {
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                margin-bottom: 1.5em;
+                display: inline-block;
+            }
+            #header .image.avatar img {
+                background: transparent !important;
+                border: none !important;
+                border-radius: 50% !important; 
+                width: 140px !important; 
+                height: 140px !important;
+                object-fit: cover;
+                box-shadow: 0 0 25px rgba(0, 168, 255, 0.4); 
+            }
+
+            /* --- ETKİNLİK TAKVİMİ WIDGET --- */
+            .event-widget {
+                background: rgba(11, 19, 43, 0.4);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(0, 168, 255, 0.3);
+                border-radius: 16px;
+                padding: 1.2em;
+                margin-top: 2.5em; 
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-align: left;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            }
+            .event-widget:hover {
+                border-color: rgba(0, 168, 255, 0.8);
+                background: rgba(11, 19, 43, 0.6);
+                box-shadow: 0 4px 20px rgba(0, 168, 255, 0.2);
+            }
+            .event-widget-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .event-icon {
+                font-size: 1.8em;
+                color: #00a8ff;
+                margin-right: 0.6em;
+            }
+            .next-event-info {
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
+            }
+            .event-date {
+                color: #00a8ff;
+                font-size: 0.75em;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                margin-bottom: 0.2em;
+            }
+            .event-title {
+                color: #ffffff;
+                font-size: 1em;
+                font-weight: 600;
+                font-family: 'Syne', sans-serif;
+                line-height: 1.2;
+            }
+            .toggle-icon {
+                color: #c9d1d9;
+                transition: transform 0.3s ease;
+            }
+            .event-list {
+                max-height: 0;
+                overflow-y: hidden;
+                transition: max-height 0.4s ease-out, margin-top 0.4s ease-out, opacity 0.3s ease;
+                opacity: 0;
+            }
+            .event-list.open {
+                max-height: 220px; 
+                overflow-y: auto; 
+                margin-top: 1em;
+                opacity: 1;
+                border-top: 1px solid rgba(0, 168, 255, 0.2);
+                padding-top: 1em;
+                padding-right: 5px;
+            }
+            .event-list::-webkit-scrollbar {
+                width: 4px;
+            }
+            .event-list::-webkit-scrollbar-thumb {
+                background-color: #00a8ff;
+                border-radius: 10px;
+            }
+            .event-list ul {
+                list-style: none !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+            .event-list ul li {
+                font-size: 0.9em;
+                color: #e6edf3;
+                margin-bottom: 1em;
+                padding-left: 0 !important;
+                display: flex;
+                flex-direction: column;
+            }
+            .event-list ul li strong {
+                color: #00a8ff;
+                font-size: 0.85em;
+                letter-spacing: 0.5px;
+            }
+            
+            /* İçerik Kartları - Koyu Cam (Glassmorphism) Etkisi */
+            #main > section {
+                background: rgba(11, 19, 43, 0.45);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(255,255,255,0.06);
+                border-radius: 16px;
+                padding: 4em;
+                margin-bottom: 3em;
+                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+                transition: border-color 0.4s ease, box-shadow 0.4s ease;
+            }
+            #main > section:hover {
+                border-color: rgba(0, 168, 255, 0.2);
+                box-shadow: 0 8px 32px 0 rgba(0, 168, 255, 0.1);
+            }
+
+            /* Devamını Oku CSS */
+            .read-more-content {
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.5s ease-out, opacity 0.4s ease;
+                opacity: 0;
+            }
+            .read-more-content.expanded {
+                max-height: 500px; 
+                opacity: 1;
+                margin-top: 1em;
+            }
+            .read-more-btn {
+                background: none !important;
+                border: 1px solid #00a8ff !important;
+                color: #00a8ff !important;
+                font-size: 0.85em !important;
+                padding: 0.5em 1.5em !important;
+                border-radius: 20px !important;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                font-family: 'Outfit', sans-serif !important;
+                font-weight: 600;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5em;
+                box-shadow: none !important;
+            }
+            .read-more-btn:hover {
+                background: rgba(0, 168, 255, 0.15) !important;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 15px rgba(0, 168, 255, 0.2) !important;
+            }
+
+            /* İkon Kutuları */
+            .feature-icon {
+                font-size: 2.5em;
+                color: #00a8ff;
+                margin-bottom: 0.5em;
+                display: block;
+                transition: transform 0.3s ease, color 0.3s ease;
+            }
+            .work-item:hover .feature-icon {
+                transform: scale(1.1);
+                color: #00d2ff;
+            }
+
+            /* Yönetim Kadrosu Profil Tasarımı */
+            .team-member {
+                text-align: center;
+                margin-bottom: 2.5em;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+            .team-member img {
+                border-radius: 50%;
+                width: 160px;
+                height: 160px;
+                max-width: 100%;
+                object-fit: cover;
+                border: 3px solid rgba(0, 168, 255, 0.5);
+                box-shadow: 0 0 20px rgba(0, 168, 255, 0.2);
+                margin-bottom: 1em;
+                transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+            .team-member img:hover {
+                transform: scale(1.05);
+                border-color: rgba(0, 168, 255, 1);
+                box-shadow: 0 0 25px rgba(0, 168, 255, 0.5);
+            }
+
+            /* Resmi Olmayanlar İçin Boş Çerçeve */
+            .empty-avatar {
+                border-radius: 50%;
+                width: 160px;
+                height: 160px;
+                max-width: 100%;
+                border: 3px dashed rgba(0, 168, 255, 0.4);
+                background: rgba(11, 19, 43, 0.4);
+                margin-bottom: 1em;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: rgba(0, 168, 255, 0.6);
+                font-size: 0.9em;
+                font-weight: 600;
+                transition: all 0.3s ease;
+            }
+            .team-member:hover .empty-avatar {
+                border-color: rgba(0, 168, 255, 0.8);
+                color: rgba(0, 168, 255, 1);
+            }
+
+            /* İsim Kesilme Sorunu Çözümü İçin Ekstra Düzenleme */
+            .team-member h3 {
+                margin-bottom: 0.2em;
+                font-size: 1.15em;
+                line-height: 1.6 !important;
+                min-height: 3.5em; 
+                width: 100%;
+            }
+            .team-member p {
+                color: #00a8ff;
+                font-weight: 600;
+                font-size: 0.85em;
+                margin: 0;
+            }
+
+            /* Butonlar (Genel) */
+            input[type="submit"], .button {
+                background-color: #0077b6 !important; 
+                color: white !important;
+                border-radius: 8px !important;
+                font-family: 'Syne', sans-serif !important;
+                font-weight: 700;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+            }
+            input[type="submit"]:hover, .button:hover {
+                background-color: #0096c7 !important;
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(0, 150, 199, 0.5);
+            }
+
+            /* Form Elemanları */
+            input[type="text"], input[type="email"], input[type="tel"], textarea {
+                background: rgba(11, 19, 43, 0.6) !important;
+                border: 1px solid rgba(0, 168, 255, 0.3) !important;
+                color: white !important;
+                border-radius: 6px !important;
+            }
+            input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, textarea:focus {
+                border-color: #00a8ff !important;
+                box-shadow: 0 0 0 2px rgba(0, 168, 255, 0.2) !important;
+            }
+        </style>
+    </head>
+    <body class="is-preload">
+
+        <!-- Header -->
+            <header id="header">
+                <div class="inner">
+                    <!-- Kulüp Logosu -->
+                    <a href="#" class="image avatar"><img src="images/Kadro/logo.jpeg" alt="Topkapı Üniversitesi Fikir Kulübü Logosu" /></a>
+                    <h1><strong>Fikir Kulübü'ne</strong> hoş geldin.<br />
+                    Kampüsün en büyük ailesi,<br />
+                    sosyalleşme ve dayanışma merkezi.</h1>
+                    
+                    <!-- ETKİNLİK TAKVİMİ WIDGET -->
+                    <div class="event-widget" id="eventWidget" onclick="toggleEvents()">
+                        <div class="event-widget-header">
+                            <span class="icon solid fa-calendar-alt event-icon"></span>
+                            <div class="next-event-info">
+                                <span class="event-date">Yaklaşan Etkinlik • 24 Ekim</span>
+                                <span class="event-title">Tanışma Toplantısı & Çay Molası</span>
+                            </div>
+                            <span class="icon solid fa-chevron-down toggle-icon" id="eventToggleIcon"></span>
+                        </div>
+                        
+                        <div class="event-list" id="eventList">
+                            <ul>
+                                <li>
+                                    <strong>24 Ekim Perşembe</strong>
+                                    Tanışma Toplantısı & Çay Molası
+                                </li>
+                                <li>
+                                    <strong>10 Kasım Cuma</strong>
+                                    Güz Dönemi İlk Atölyesi
+                                </li>
+                                <li>
+                                    <strong>25 Kasım Çarşamba</strong>
+                                    Açık Kürsü Sohbetleri
+                                </li>
+                                <li>
+                                    <strong>5 Aralık Pazartesi</strong>
+                                    Sosyal Sorumluluk Saha Etkinliği
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+        <!-- Main -->
+            <div id="main">
+
+                <!-- Bölüm 1: Hakkımızda -->
+                    <section id="one">
+                        <header class="major">
+                            <h2>Sıradan Bir Ekip Değil,<br />
+                            Birlikte Büyüyen Bir Aileyiz.</h2>
+                        </header>
+                        <p>Topkapı Üniversitesi Fikir Kulübü olarak bizler, klasik bir öğrenci topluluğundan çok daha fazlasıyız; biz kampüsün en sıcak, en samimi ve en büyük ailesiyiz. Temel amacımız, üniversite yaşamının getirdiği stresten ve gençleri içine çeken zararlı alışkanlıklardan uzaklaşarak, üyelerimize yepyeni hobiler kazandırmak, onlara farklı vizyonlar katmak ve etik değerlere sahip, topluma faydalı bireyler olma yolunda sağlam bir zemin hazırlamaktır.</p>
+                        
+                        <!-- Gizlenmiş İçerik -->
+                        <div class="read-more-content" id="aboutMoreText">
+                            <p>Hiçbir siyasi görüşe, kutuplaşmaya veya ayrımcılığa yer vermeyen, tamamen tarafsız, kucaklayıcı ve eşitlikçi bir yapıya sahibiz. Bizim için asıl mesele, salt akademik veya profesyonel hırslar peşinde koşmak değil; iyi günde ve kötü günde birbirinin yanında duran, dertleşen, birlikte gülen ve birlikte gelişen sağlam bir dostluk bağı kurmaktır. Sadece kariyerinize değil, karakterinize ve ruhunuza da dokunacak etkinliklerle, hayat boyu sürecek dostlukların temellerini burada, bu çatının altında atıyoruz. Kendini yalnız hissetmediğin, fikirlerini, hobilerini ve hayallerini özgürce paylaşabildiğin ve günün sonunda "İyi ki buradayım" diyeceğin bu büyük aileye seni de bekliyoruz.</p>
+                        </div>
+                        
+                        <!-- Devamını Oku Butonu -->
+                        <button class="read-more-btn" id="readMoreBtn" onclick="toggleReadMore()">
+                            Devamını Oku <i class="fas fa-chevron-down"></i>
+                        </button>
+                        
+                        <br><br>
+                        <ul class="actions">
+                            <li><a href="#two" class="button smooth-scroll">Neler Yapıyoruz?</a></li>
+                        </ul>
+                    </section>
+
+                <!-- Bölüm 2: Faaliyetlerimiz -->
+                    <section id="two">
+                        <h2>Neler Yapıyoruz?</h2>
+                        <div class="row">
+                            <article class="col-6 col-12-xsmall work-item">
+                                <span class="icon solid fa-users feature-icon"></span>
+                                <h3>Sosyal Gelişim ve Hobi Buluşmaları</h3>
+                                <p>Gündelik hayatın karmaşasından ve zararlı alışkanlıklardan uzak, zihni ve bedeni dinlendiren samimi etkinlikler düzenliyoruz. Kampüs içi turnuvalar, kültür gezileri ve hobi atölyeleriyle boş zamanlarımızı en verimli, en keyifli ve en "biz bize" şekilde değerlendiriyoruz.</p>
+                            </article>
+                            <article class="col-6 col-12-xsmall work-item">
+                                <span class="icon solid fa-heart feature-icon"></span>
+                                <h3>Etik Değerler ve Sosyal Sorumluluk</h3>
+                                <p>Sadece kendi hayatımızı değil, çevremizi de güzelleştirmek için bir araya geliyoruz. Adil, vicdanlı ve etik değerlere bağlı bireyler olarak sosyal sorumluluk projeleri üretiyor, yardımlaşma ve dayanışma kültürünü kampüsten sokağa taşıyoruz.</p>
+                            </article>
+                            <article class="col-6 col-12-xsmall work-item">
+                                <span class="icon solid fa-coffee feature-icon"></span>
+                                <h3>Sıcak Network ve İletişim Ağı</h3>
+                                <p>Resmi, soğuk ve takım elbiseli toplantılar yerine, çayımız ve kahvemiz eşliğinde derin sohbetler gerçekleştiriyoruz. Farklı bölümlerden arkadaşlarımızla, hocalarımızla ve mezunlarımızla bir aile sıcaklığında buluşup, çıkarsız ve güçlü bir iletişim ağı (network) kuruyoruz.</p>
+                            </article>
+                            <article class="col-6 col-12-xsmall work-item">
+                                <span class="icon solid fa-microphone feature-icon"></span>
+                                <h3>Özgür ve Bağımsız Kürsü</h3>
+                                <p>Siyasetten, etiketlerden ve yargılamalardan tamamen uzak; herkesin hobilerini, okuduğu bir kitabı, izlediği bir filmi veya hayata dair dertlerini özgürce mikrofona taşıyabildiği, karşılıklı saygıya dayalı şeffaf bir paylaşım ve tartışma alanı sunuyoruz.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                <!-- Bölüm 3: Yönetim Kadrosu -->
+                    <section id="three">
+                        <h2>Yönetim Kadrosu</h2>
+                        <p>Biz büyük bir aileyiz. Bu aileyi bir arada tutmak, etkinliklerimizin sorunsuz işlemesini sağlamak ve her bir üyemizin sesini duyurabilmesi için çalışan, kapısı ve telefonu her zaman, herkese açık olan yönetim kurulumuz.</p>
+                        
+                        <div class="row">
+                            <article class="col-3 col-6-xsmall team-member">
+                                <img src="images/Kadro/başkan.jpeg" alt="Derin Çakır" />
+                                <h3>Derin Çakır</h3>
+                                <p>Başkan</p>
+                            </article>
+                            
+                            <article class="col-3 col-6-xsmall team-member">
+                                <img src="images/Kadro/fatih.jpeg" alt="Fatih Çoban" />
+                                <h3>Fatih Çoban</h3>
+                                <p>Başkan Yardımcısı</p>
+                            </article>
+                            
+                            <article class="col-3 col-6-xsmall team-member">
+                                <img src="images/Kadro/miko.jpeg" alt="Mikail Yılmaz" />
+                                <h3>Mikail Yılmaz</h3>
+                                <p>Mali İşler</p>
+                            </article>
+                            
+                            <article class="col-3 col-6-xsmall team-member">
+                                <img src="images/Kadro/elif_yönetim.jpeg" alt="Reyyan Elif Süer" />
+                                <h3>Reyyan Elif Süer</h3>
+                                <p>İnsan Kaynakları</p>
+                            </article>
+
+                            <article class="col-3 col-6-xsmall team-member">
+                                <img src="images/Kadro/ibo.jpeg" alt="İbrahim Öztemir" />
+                                <h3>İbrahim Öztemir</h3>
+                                <p>Bilişim ve Teknoloji</p>
+                            </article>
+
+                            <article class="col-3 col-6-xsmall team-member">
+                                <img src="images/Kadro/savaş.jpeg" alt="Muhammet Savaş" />
+                                <h3>Muhammet Savaş</h3>
+                                <p>Bilişim ve Teknoloji</p>
+                            </article>
+
+                            <article class="col-3 col-6-xsmall team-member">
+                                <div class="empty-avatar">Yakında</div>
+                                <h3>Mert İnce</h3>
+                                <p>Organizasyon</p>
+                            </article>
+
+                            <article class="col-3 col-6-xsmall team-member">
+                                <div class="empty-avatar">Yakında</div>
+                                <h3>Mina Makascı</h3>
+                                <p>Sosyal Medya</p>
+                            </article>
+                        </div>
+                    </section>
+
+                <!-- Bölüm 4: İletişim Formu -->
+                    <section id="four">
+                        <h2>Fikrini Ne</h2>
+                        <p>Sadece kayıt olmak veya iş konuşmak için değil; gelip bizimle tanışmak, dertleşmek, yeni bir hobi edinmek veya sadece yalnız kalmamak için kapımız sana her zaman açık. Aşağıdaki formu doldur, kulüp odamıza uğra ve bu büyük ailenin ayrılmaz bir parçası ol.</p>
+                        <div class="row">
+                            <div class="col-8 col-12-small">
+                                
+                                <form action="https://formsubmit.co/seninmailadresin@gmail.com" method="POST">
+                                    <input type="hidden" name="_subject" value="Fikir Kulübü Yeni Başvuru!">
+                                    
+                                    <div class="row gtr-uniform gtr-50">
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="text" name="Ad_Soyad" id="name" placeholder="          Adın Soyadın" required />
+                                        </div>
+                                        <div class="col-6 col-12-xsmall">
+                                            <input type="email" name="E_Posta" id="email" placeholder="       E-posta Adresin" required />
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="tel" name="Telefon" id="phone" placeholder="              Telefon Numaran " required />
+                                        </div>
+                                        <div class="col-12">
+                                            <textarea name="Mesaj" id="message" placeholder="Bize kısaca kendinden, hobilerinden veya beklentilerinden bahset..." rows="4" required></textarea>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <ul class="actions">
+                                        <li><input type="submit" value="Aramıza Katıl" /></li>
+                                    </ul>
+                                </form>
+
+                            </div>
+                            <div class="col-4 col-12-small">
+                                <ul class="labeled-icons">
+                                    <li>
+                                        <h3 class="icon solid fa-home"><span class="label">Adres</span></h3>
+                                        Topkapı Üniversitesi Kampüsü<br />
+                                        İstanbul, Türkiye
+                                    </li>
+                                    <li>
+                                        <h3 class="icon solid fa-envelope"><span class="label">E-posta</span></h3>
+                                        <!-- Mail adresine tıklandığında direkt mail gönderme ekranı açılır -->
+                                        <a href="mailto:fikirtopkapi@gmail.com">fikirtopkapi@gmail.com</a>
+                                    </li>
+                                    <li>
+                                        <h3 class="icon brands fa-instagram"><span class="label">Instagram</span></h3>
+                                        <!-- target="_blank" sayesinde Instagram yeni sekmede açılır -->
+                                        <a href="https://www.instagram.com/fikirtopkapi/" target="_blank">@fikirtopkapi</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+            </div>
+            
+        <!-- Footer -->
+            <footer id="footer">
+                <div class="inner">
+                    <ul class="icons">
+                        <li><a href="https://www.instagram.com/fikirtopkapi/" target="_blank" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+                        <li><a href="#" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+                        <li><a href="mailto:fikirtopkapi@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+                    </ul>
+                    <ul class="copyright">
+                        <li>&copy; Topkapı Üniversitesi Fikir Kulübü. Tüm hakları saklıdır.</li>
+                    </ul>
+                </div>
+            </footer>
+
+        <!-- Scripts -->
+            <script src="assets/js/jquery.min.js"></script>
+            <script src="assets/js/jquery.poptrox.min.js"></script>
+            <script src="assets/js/browser.min.js"></script>
+            <script src="assets/js/breakpoints.min.js"></script>
+            <script src="assets/js/util.js"></script>
+            <script src="assets/js/main.js"></script>
+            
+            <!-- Etkinlik Takvimi & Devamını Oku Scripti -->
+            <script>
+                function toggleEvents() {
+                    var eventList = document.getElementById("eventList");
+                    var toggleIcon = document.getElementById("eventToggleIcon");
+                    
+                    if (eventList.classList.contains("open")) {
+                        eventList.classList.remove("open");
+                        toggleIcon.style.transform = "rotate(0deg)";
+                    } else {
+                        eventList.classList.add("open");
+                        toggleIcon.style.transform = "rotate(180deg)";
+                    }
+                }
+
+                function toggleReadMore() {
+                    var moreText = document.getElementById("aboutMoreText");
+                    var btnText = document.getElementById("readMoreBtn");
+
+                    if (moreText.classList.contains("expanded")) {
+                        moreText.classList.remove("expanded");
+                        btnText.innerHTML = 'Devamını Oku <i class="fas fa-chevron-down"></i>';
+                    } else {
+                        moreText.classList.add("expanded");
+                        btnText.innerHTML = 'Daha Az Göster <i class="fas fa-chevron-up"></i>';
+                    }
+                }
+            </script>
+
+    </body>
+</html>
