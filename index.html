@@ -2,7 +2,7 @@
 <!--
     Fikir Kulübü Özel Tasarımı
     Topkapı Üniversitesi Fikir Kulübü için "Aile ve Sosyal Network" vizyonuyla hazırlanmıştır.
-    Mobil ve Masaüstü Tam Uyumlu Modern Sürüm.
+    Masaüstü & Mobil Tam Uyumlu Ultra Neon Sürüm.
 -->
 <html>
     <head>
@@ -14,23 +14,29 @@
         <!-- Özel Fontlar: Syne (Başlıklar) ve Outfit (Metinler) -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
 
-        <!-- Fikir Kulübü Özel Stil İlaveleri -->
+        <!-- Fikir Kulübü Özel Neon Stil İlaveleri -->
         <style>
-            /* Gece Mavisinden Siyaha Sabit Arka Plan Geçişi */
+            /* DERİN GECE & NEON ARKA PLAN */
             body {
-                background: linear-gradient(135deg, #0b132b 0%, #000000 100%) !important;
+                background: #050811 !important;
+                background-image: 
+                    radial-gradient(circle at 15% 15%, rgba(0, 243, 255, 0.12) 0%, transparent 45%),
+                    radial-gradient(circle at 85% 75%, rgba(112, 0, 255, 0.12) 0%, transparent 45%),
+                    linear-gradient(135deg, #050811 0%, #02040a 100%) !important;
                 background-attachment: fixed !important;
-            }
-            
-            body, input, select, textarea {
+                color: #e2e8f0;
                 font-family: 'Outfit', sans-serif !important;
-                color: #e6edf3;
-                font-size: 15px;
+                font-size: 17px; /* Bilgisayarda rahat okunan büyük yazı */
+                line-height: 1.7;
             }
 
-            /* --- TÜRKÇE KARAKTER KESİLME HATASI DÜZELTMESİ --- */
+            input, select, textarea {
+                font-family: 'Outfit', sans-serif !important;
+            }
+
+            /* --- TÜRKÇE KARAKTER VE NEON BAŞLIKLAR --- */
             h1, h2, h3, h4, h5, h6 {
                 font-family: 'Syne', sans-serif !important;
                 color: #ffffff;
@@ -40,73 +46,87 @@
                 padding-bottom: 2px !important;
                 overflow: visible !important;
             }
-            
-            /* --- SOL PANEL (SCROLL EKLENDİ) --- */
+
+            /* Neon Işıklı Ana Başlıklar */
+            h2 {
+                font-size: 2.2em !important;
+                font-weight: 800 !important;
+                background: linear-gradient(135deg, #ffffff 40%, #00f3ff 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                text-shadow: 0 0 25px rgba(0, 243, 255, 0.35);
+                margin-bottom: 0.8em !important;
+            }
+
+            /* --- SOL PANEL (HEADER) --- */
             #header {
-                background: linear-gradient(180deg, rgba(11, 19, 43, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
-                border-right: 1px solid rgba(255,255,255,0.08);
-                backdrop-filter: blur(10px);
+                background: rgba(6, 10, 22, 0.92) !important;
+                border-right: 1px solid rgba(0, 243, 255, 0.25) !important;
+                backdrop-filter: blur(15px);
+                box-shadow: 5px 0 30px rgba(0, 0, 0, 0.6);
                 overflow-y: auto !important; 
                 scrollbar-width: thin; 
-                scrollbar-color: rgba(0, 168, 255, 0.5) transparent;
+                scrollbar-color: #00f3ff transparent;
             }
             
             #header::-webkit-scrollbar {
                 width: 6px;
             }
-            #header::-webkit-scrollbar-track {
-                background: transparent;
-            }
             #header::-webkit-scrollbar-thumb {
-                background-color: rgba(0, 168, 255, 0.4);
+                background-color: #00f3ff;
                 border-radius: 10px;
             }
 
             #header h1 {
-                font-size: 1.45em;
-                color: #e6edf3;
-                line-height: 1.4 !important;
+                font-size: 1.55em !important;
+                color: #cbd5e1;
+                line-height: 1.5 !important;
             }
             #header h1 strong {
-                color: #00a8ff;
-                text-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
+                color: #00f3ff !important;
+                text-shadow: 0 0 15px rgba(0, 243, 255, 0.8), 0 0 30px rgba(0, 243, 255, 0.4);
             }
 
-            /* Logo Arka Plan Griliğini Kaldırma */
+            /* Logo - Neon Halkalı */
             #header .image.avatar {
                 background: transparent !important;
                 border: none !important;
                 padding: 0 !important;
-                margin-bottom: 1.2em;
+                margin-bottom: 1.5em;
                 display: inline-block;
             }
             #header .image.avatar img {
                 background: transparent !important;
-                border: none !important;
+                border: 2px solid #00f3ff !important;
                 border-radius: 50% !important; 
-                width: 135px !important; 
-                height: 135px !important;
+                width: 140px !important; 
+                height: 140px !important;
                 object-fit: cover;
-                box-shadow: 0 0 25px rgba(0, 168, 255, 0.4); 
+                box-shadow: 0 0 30px rgba(0, 243, 255, 0.6), inset 0 0 15px rgba(0, 243, 255, 0.4) !important; 
+                transition: all 0.3s ease;
+            }
+            #header .image.avatar img:hover {
+                transform: scale(1.03);
+                box-shadow: 0 0 40px rgba(0, 243, 255, 0.85) !important;
             }
 
-            /* --- ETKİNLİK TAKVİMİ WIDGET --- */
+            /* --- ETKİNLİK TAKVİMİ WIDGET (NEON) --- */
             .event-widget {
-                background: rgba(11, 19, 43, 0.55);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(0, 168, 255, 0.35);
+                background: rgba(12, 20, 39, 0.8) !important;
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(0, 243, 255, 0.4) !important;
                 border-radius: 16px;
-                padding: 1.2em;
+                padding: 1.3em;
                 margin-top: 2em; 
                 cursor: pointer;
                 transition: all 0.3s ease;
                 text-align: left;
-                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+                box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);
             }
             .event-widget:hover {
-                border-color: rgba(0, 168, 255, 0.8);
-                background: rgba(11, 19, 43, 0.75);
-                box-shadow: 0 4px 20px rgba(0, 168, 255, 0.25);
+                border-color: #00f3ff !important;
+                background: rgba(12, 20, 39, 0.95) !important;
+                box-shadow: 0 0 30px rgba(0, 243, 255, 0.4) !important;
             }
             .event-widget-header {
                 display: flex;
@@ -114,8 +134,9 @@
                 justify-content: space-between;
             }
             .event-icon {
-                font-size: 1.6em;
-                color: #00a8ff;
+                font-size: 1.7em;
+                color: #00f3ff;
+                text-shadow: 0 0 12px rgba(0, 243, 255, 0.8);
                 margin-right: 0.6em;
             }
             .next-event-info {
@@ -124,22 +145,23 @@
                 flex-grow: 1;
             }
             .event-date {
-                color: #00a8ff;
-                font-size: 0.75em;
+                color: #00f3ff;
+                font-size: 0.8em;
                 font-weight: 700;
                 text-transform: uppercase;
                 letter-spacing: 1px;
                 margin-bottom: 0.2em;
+                text-shadow: 0 0 8px rgba(0, 243, 255, 0.5);
             }
             .event-title {
                 color: #ffffff;
-                font-size: 0.95em;
+                font-size: 0.98em;
                 font-weight: 600;
                 font-family: 'Syne', sans-serif;
-                line-height: 1.25;
+                line-height: 1.3;
             }
             .toggle-icon {
-                color: #c9d1d9;
+                color: #00f3ff;
                 transition: transform 0.3s ease;
             }
             .event-list {
@@ -149,11 +171,11 @@
                 opacity: 0;
             }
             .event-list.open {
-                max-height: 220px; 
+                max-height: 230px; 
                 overflow-y: auto; 
                 margin-top: 1em;
                 opacity: 1;
-                border-top: 1px solid rgba(0, 168, 255, 0.2);
+                border-top: 1px solid rgba(0, 243, 255, 0.25);
                 padding-top: 1em;
                 padding-right: 5px;
             }
@@ -163,33 +185,33 @@
                 margin: 0 !important;
             }
             .event-list ul li {
-                font-size: 0.88em;
-                color: #e6edf3;
+                font-size: 0.9em;
+                color: #e2e8f0;
                 margin-bottom: 1em;
                 padding-left: 0 !important;
                 display: flex;
                 flex-direction: column;
             }
             .event-list ul li strong {
-                color: #00a8ff;
-                font-size: 0.85em;
+                color: #00f3ff;
+                font-size: 0.88em;
                 letter-spacing: 0.5px;
             }
-            
-            /* İçerik Kartları - Koyu Cam (Glassmorphism) Etkisi */
+
+            /* --- İÇERİK KARTLARI (NEON CAM KUTULAR) --- */
             #main > section {
-                background: rgba(11, 19, 43, 0.5);
-                backdrop-filter: blur(12px);
-                border: 1px solid rgba(255,255,255,0.08);
-                border-radius: 18px;
-                padding: 3.5em;
-                margin-bottom: 2.5em;
-                box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-                transition: border-color 0.4s ease, box-shadow 0.4s ease;
+                background: rgba(9, 14, 28, 0.75) !important;
+                backdrop-filter: blur(16px);
+                border: 1px solid rgba(0, 243, 255, 0.2) !important;
+                border-radius: 20px !important;
+                padding: 3.5em 3em !important;
+                margin-bottom: 2.8em !important;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 243, 255, 0.05) !important;
+                transition: all 0.4s ease !important;
             }
             #main > section:hover {
-                border-color: rgba(0, 168, 255, 0.3);
-                box-shadow: 0 8px 32px 0 rgba(0, 168, 255, 0.12);
+                border-color: rgba(0, 243, 255, 0.5) !important;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 243, 255, 0.2) !important;
             }
 
             /* Devamını Oku CSS */
@@ -200,144 +222,155 @@
                 opacity: 0;
             }
             .read-more-content.expanded {
-                max-height: 500px; 
+                max-height: 600px; 
                 opacity: 1;
                 margin-top: 1em;
             }
             .read-more-btn {
-                background: none !important;
-                border: 1px solid #00a8ff !important;
-                color: #00a8ff !important;
-                font-size: 0.9em !important;
-                padding: 0.6em 1.6em !important;
-                border-radius: 20px !important;
+                background: rgba(0, 243, 255, 0.05) !important;
+                border: 1px solid #00f3ff !important;
+                color: #00f3ff !important;
+                font-size: 0.95em !important;
+                padding: 0.7em 1.8em !important;
+                border-radius: 30px !important;
                 cursor: pointer;
                 transition: all 0.3s ease;
                 font-family: 'Outfit', sans-serif !important;
                 font-weight: 600;
                 display: inline-flex;
                 align-items: center;
-                gap: 0.5em;
-                box-shadow: none !important;
+                gap: 0.6em;
+                box-shadow: 0 0 15px rgba(0, 243, 255, 0.2) !important;
             }
             .read-more-btn:hover {
-                background: rgba(0, 168, 255, 0.15) !important;
+                background: rgba(0, 243, 255, 0.2) !important;
                 transform: translateY(-2px);
-                box-shadow: 0 4px 15px rgba(0, 168, 255, 0.2) !important;
+                box-shadow: 0 0 25px rgba(0, 243, 255, 0.5) !important;
             }
 
             /* İkon Kutuları */
             .feature-icon {
-                font-size: 2.4em;
-                color: #00a8ff;
+                font-size: 2.6em !important;
+                color: #00f3ff !important;
+                text-shadow: 0 0 18px rgba(0, 243, 255, 0.7);
                 margin-bottom: 0.4em;
                 display: block;
                 transition: transform 0.3s ease, color 0.3s ease;
             }
             .work-item:hover .feature-icon {
-                transform: scale(1.08);
-                color: #00d2ff;
+                transform: scale(1.1);
+                color: #ffffff !important;
+                text-shadow: 0 0 25px rgba(0, 243, 255, 1);
             }
 
-            /* YÖNETİM KADROSU PROFİL TASARIMI */
+            /* --- YÖNETİM KADROSU NEON PROFİLLERİ --- */
             .team-member {
                 text-align: center;
-                margin-bottom: 2.2em;
+                margin-bottom: 2.5em;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
             .team-member img {
                 border-radius: 50%;
-                width: 145px;
-                height: 145px;
+                width: 140px;
+                height: 140px;
                 max-width: 100%;
                 object-fit: cover;
-                border: 3px solid rgba(0, 168, 255, 0.6);
-                box-shadow: 0 0 20px rgba(0, 168, 255, 0.3);
-                margin-bottom: 0.8em;
-                transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+                border: 2px solid #00f3ff !important;
+                box-shadow: 0 0 20px rgba(0, 243, 255, 0.4), inset 0 0 10px rgba(0, 243, 255, 0.2) !important;
+                margin-bottom: 0.9em;
+                transition: all 0.3s ease;
             }
             .team-member img:hover {
-                transform: scale(1.05);
-                border-color: rgba(0, 168, 255, 1);
-                box-shadow: 0 0 25px rgba(0, 168, 255, 0.6);
+                transform: scale(1.06);
+                border-color: #ffffff !important;
+                box-shadow: 0 0 35px rgba(0, 243, 255, 0.85) !important;
             }
 
-            /* Resmi Olmayanlar İçin Boş Çerçeve */
             .empty-avatar {
                 border-radius: 50%;
-                width: 145px;
-                height: 145px;
+                width: 140px;
+                height: 140px;
                 max-width: 100%;
-                border: 3px dashed rgba(0, 168, 255, 0.4);
-                background: rgba(11, 19, 43, 0.5);
-                margin-bottom: 0.8em;
+                border: 2px dashed rgba(0, 243, 255, 0.5) !important;
+                background: rgba(11, 19, 43, 0.4);
+                margin-bottom: 0.9em;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: rgba(0, 168, 255, 0.8);
-                font-size: 0.9em;
+                color: #00f3ff;
+                font-size: 0.92em;
                 font-weight: 600;
+                box-shadow: 0 0 15px rgba(0, 243, 255, 0.15) !important;
                 transition: all 0.3s ease;
             }
             .team-member:hover .empty-avatar {
-                border-color: rgba(0, 168, 255, 0.8);
-                color: rgba(0, 168, 255, 1);
+                border-color: #00f3ff !important;
+                color: #ffffff;
+                box-shadow: 0 0 25px rgba(0, 243, 255, 0.5) !important;
             }
 
-            /* KADRO İSİMLERİ TÜRKÇE KARAKTER DÜZELTMESİ */
             .team-member h3 {
-                font-family: 'Outfit', sans-serif !important;
-                font-weight: 700;
-                font-size: 1.1em;
+                font-family: 'Syne', sans-serif !important;
+                font-weight: 700 !important;
+                font-size: 1.2em !important;
                 line-height: 1.35 !important;
                 margin-bottom: 0.2em;
+                color: #ffffff !important;
                 padding: 2px 0 !important;
                 overflow: visible !important;
                 width: 100%;
             }
             .team-member p {
-                color: #00a8ff;
+                color: #00f3ff !important;
                 font-weight: 600;
-                font-size: 0.88em;
+                font-size: 0.9em !important;
                 margin: 0;
+                text-shadow: 0 0 8px rgba(0, 243, 255, 0.4);
             }
 
-            /* Butonlar (Genel) */
+            /* --- NEON BUTONLAR --- */
             input[type="submit"], .button {
-                background-color: #0077b6 !important; 
-                color: white !important;
-                border-radius: 8px !important;
+                background: linear-gradient(135deg, #0077b6 0%, #00f3ff 100%) !important;
+                color: #050811 !important;
                 font-family: 'Syne', sans-serif !important;
-                font-weight: 700;
-                transition: all 0.3s ease;
-                box-shadow: 0 4px 15px rgba(0, 119, 182, 0.3);
+                font-weight: 800 !important;
+                border-radius: 10px !important;
+                border: none !important;
+                transition: all 0.3s ease !important;
+                box-shadow: 0 0 20px rgba(0, 243, 255, 0.4) !important;
+                text-shadow: none !important;
             }
             input[type="submit"]:hover, .button:hover {
-                background-color: #0096c7 !important;
+                background: linear-gradient(135deg, #00f3ff 0%, #0077b6 100%) !important;
                 transform: translateY(-2px);
-                box-shadow: 0 6px 20px rgba(0, 150, 199, 0.5);
+                box-shadow: 0 0 35px rgba(0, 243, 255, 0.75) !important;
+                color: #000000 !important;
             }
 
             /* Form Elemanları */
             input[type="text"], input[type="email"], input[type="tel"], textarea {
-                background: rgba(11, 19, 43, 0.6) !important;
-                border: 1px solid rgba(0, 168, 255, 0.3) !important;
-                color: white !important;
-                border-radius: 8px !important;
-                width: 100%;
+                background: rgba(12, 20, 39, 0.7) !important;
+                border: 1px solid rgba(0, 243, 255, 0.3) !important;
+                color: #ffffff !important;
+                border-radius: 10px !important;
+                font-size: 1em !important;
             }
             input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, textarea:focus {
-                border-color: #00a8ff !important;
-                box-shadow: 0 0 0 2px rgba(0, 168, 255, 0.25) !important;
+                border-color: #00f3ff !important;
+                box-shadow: 0 0 15px rgba(0, 243, 255, 0.35) !important;
             }
 
             /* =========================================================
-               NİZAMİ VE MODERN MOBİL / TABLET UYUM CSS
+               RESPONSIVE (MOBİL & TABLET) NİZAMİ UYUM
                ========================================================= */
 
             @media screen and (max-width: 980px) {
+                body {
+                    font-size: 16px;
+                }
+
                 #header {
                     position: relative !important;
                     width: 100% !important;
@@ -347,7 +380,7 @@
                     text-align: center !important;
                     padding: 3em 1.5em 2em 1.5em !important;
                     border-right: none !important;
-                    border-bottom: 1px solid rgba(0, 168, 255, 0.25);
+                    border-bottom: 1px solid rgba(0, 243, 255, 0.3);
                 }
 
                 #header .inner {
@@ -356,8 +389,7 @@
                 }
 
                 #header h1 {
-                    font-size: 1.35em !important;
-                    line-height: 1.5 !important;
+                    font-size: 1.4em !important;
                 }
 
                 #header .image.avatar img {
@@ -378,49 +410,41 @@
                 }
 
                 h2 {
-                    font-size: 1.6em !important;
+                    font-size: 1.8em !important;
                 }
             }
 
             @media screen and (max-width: 736px) {
+                body {
+                    font-size: 15px;
+                }
+
                 #main > section {
                     padding: 2em 1.2em !important;
                 }
 
-                /* Yönetim Kadrosu Resimleri - Mobil Nizami Boyut */
+                h2 {
+                    font-size: 1.55em !important;
+                }
+
+                /* Mobil Kadro Fotoğrafları */
                 .team-member {
-                    padding: 0 5px !important;
-                    margin-bottom: 2.2em !important;
+                    padding: 0 4px !important;
+                    margin-bottom: 2em !important;
                 }
 
                 .team-member img, .empty-avatar {
-                    width: 125px !important;
-                    height: 125px !important;
-                    margin-bottom: 0.8em !important;
-                    font-size: 0.9em !important;
+                    width: 120px !important;
+                    height: 120px !important;
+                    margin-bottom: 0.7em !important;
                 }
 
                 .team-member h3 {
                     font-size: 1.05em !important;
-                    line-height: 1.35 !important;
                 }
 
                 .team-member p {
                     font-size: 0.85em !important;
-                }
-
-                /* Etkinlik Widget */
-                .event-widget {
-                    padding: 1.2em !important;
-                    margin-top: 1.8em !important;
-                }
-
-                .event-title {
-                    font-size: 0.95em !important;
-                }
-
-                .event-date {
-                    font-size: 0.75em !important;
                 }
 
                 /* Butonlar */
@@ -429,27 +453,7 @@
                     text-align: center !important;
                     justify-content: center !important;
                     font-size: 0.95em !important;
-                    padding: 0.75em 1em !important;
-                }
-            }
-
-            @media screen and (max-width: 414px) {
-                /* Küçük Telefonlar İçin Ekstra İnce Ayar */
-                #main > section {
-                    padding: 1.8em 1em !important;
-                }
-
-                .team-member img, .empty-avatar {
-                    width: 118px !important;
-                    height: 118px !important;
-                }
-
-                .team-member h3 {
-                    font-size: 1em !important;
-                }
-
-                h2 {
-                    font-size: 1.45em !important;
+                    padding: 0.8em 1em !important;
                 }
             }
         </style>
@@ -534,22 +538,22 @@
                             <article class="col-6 col-12-xsmall work-item">
                                 <span class="icon solid fa-users feature-icon"></span>
                                 <h3>Sosyal Gelişim ve Hobi Buluşmaları</h3>
-                                <p>Gündelik hayatın karmaşasından ve zararlı alışkanlıklardan uzak, zihni ve bedeni dinlendiren samimi etkinlikler düzenliyoruz. Kampüs içi turnuvalar, kültür gezileri ve hobi atölyeleriyle boş zamanlarımızı en verimli, en keyifli ve en "biz bize" şekilde değerlendiriyoruz.</p>
+                                <p>Gündelik hayatın karmaşasından ve zararlı alışkanlıklardan uzak, zihni ve bedeni dinlendiren samimi etkinlikler düzenliyoruz. Kampüs içi turnuvalar, kültür gezileri ve hobi atölyeleriyle boş zamanlarımızı en verimli ve en keyifli şekilde değerlendiriyoruz.</p>
                             </article>
                             <article class="col-6 col-12-xsmall work-item">
                                 <span class="icon solid fa-heart feature-icon"></span>
                                 <h3>Etik Değerler ve Sosyal Sorumluluk</h3>
-                                <p>Sadece kendi hayatımızı değil, çevremizi de güzelleştirmek için bir araya geliyoruz. Adil, vicdanlı ve etik değerlere bağlı bireyler olarak sosyal sorumluluk projeleri üretiyor, yardımlaşma ve dayanışma kültürünü kampüsten sokağa taşıyoruz.</p>
+                                <p>Sadece kendi hayatımızı değil, çevremizi de güzelleştirmek için bir araya geliyoruz. Adil, vicdanlı ve etik değerlere bağlı bireyler olarak sosyal sorumluluk projeleri üretiyor, yardımlaşma kültürünü kampüsten sokağa taşıyoruz.</p>
                             </article>
                             <article class="col-6 col-12-xsmall work-item">
                                 <span class="icon solid fa-coffee feature-icon"></span>
                                 <h3>Sıcak Network ve İletişim Ağı</h3>
-                                <p>Resmi, soğuk ve takım elbiseli toplantılar yerine, çayımız ve kahvemiz eşliğinde derin sohbetler gerçekleştiriyoruz. Farklı bölümlerden arkadaşlarımızla, hocalarımızla ve mezunlarımızla bir aile sıcaklığında buluşup, çıkarsız ve güçlü bir iletişim ağı (network) kuruyoruz.</p>
+                                <p>Resmi ve soğuk toplantılar yerine, çayımız ve kahvemiz eşliğinde derin sohbetler gerçekleştiriyoruz. Farklı bölümlerden arkadaşlarımızla, hocalarımızla ve mezunlarımızla bir aile sıcaklığında buluşup güçlü bir iletişim ağı kuruyoruz.</p>
                             </article>
                             <article class="col-6 col-12-xsmall work-item">
                                 <span class="icon solid fa-microphone feature-icon"></span>
                                 <h3>Özgür ve Bağımsız Kürsü</h3>
-                                <p>Siyasetten, etiketlerden ve yargılamalardan tamamen uzak; herkesin hobilerini, okuduğu bir kitabı, izlediği bir filmi veya hayata dair dertlerini özgürce mikrofona taşıyabildiği, karşılıklı saygıya dayalı şeffaf bir paylaşım ve tartışma alanı sunuyoruz.</p>
+                                <p>Siyasetten ve yargılamalardan uzak; herkesin hobilerini, okuduğu bir kitabı, izlediği bir filmi veya hayata dair dertlerini özgürce mikrofona taşıyabildiği, karşılıklı saygıya dayalı şeffaf bir paylaşım alanı sunuyoruz.</p>
                             </article>
                         </div>
                     </section>
@@ -557,7 +561,7 @@
                 <!-- Bölüm 3: Yönetim Kadrosu -->
                     <section id="three">
                         <h2>Yönetim Kadrosu</h2>
-                        <p>Biz büyük bir aileyiz. Bu aileyi bir arada tutmak, etkinliklerimizin sorunsuz işlemesini sağlamak ve her bir üyemizin sesini duyurabilmesi için çalışan, kapısı ve telefonu her zaman, herkese açık olan yönetim kurulumuz.</p>
+                        <p>Biz büyük bir aileyiz. Bu aileyi bir arada tutmak, etkinliklerimizin sorunsuz işlemesini sağlamak ve her bir üyemizin sesini duyurabilmesi için çalışan yönetim kurulumuz.</p>
                         
                         <div class="row">
                             <article class="col-3 col-6-xsmall team-member">
@@ -613,7 +617,7 @@
                 <!-- Bölüm 4: İletişim Formu -->
                     <section id="four">
                         <h2>Aramıza Katıl</h2>
-                        <p>Sadece kayıt olmak veya iş konuşmak için değil; gelip bizimle tanışmak, dertleşmek, yeni bir hobi edinmek veya sadece yalnız kalmamak için kapımız sana her zaman açık. Aşağıdaki formu doldur, kulüp odamıza uğra ve bu büyük ailenin ayrılmaz bir parçası ol.</p>
+                        <p>Sadece kayıt olmak için değil; gelip bizimle tanışmak, dertleşmek veya yeni bir hobi edinmek için kapımız sana her zaman açık. Aşağıdaki formu doldur, kulüp odamıza uğra ve bu büyük ailenin parçası ol.</p>
                         <div class="row">
                             <div class="col-8 col-12-small">
                                 
