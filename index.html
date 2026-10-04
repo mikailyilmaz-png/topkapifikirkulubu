@@ -622,8 +622,11 @@
                             <div class="col-8 col-12-small">
                                 
                                 <form action="https://formsubmit.co/fikirtopkapi@gmail.com" method="POST">
-                                    <input type="hidden" name="_subject" value="Fikir Kulübü Yeni Başvuru!">
-                                    
+                                    <!-- FormSubmit Takılmasını Önleyen Gizli Ayarlar -->
+                                    <input type="hidden" name="_captcha" value="false">
+                                    <input type="hidden" name="_subject" value="Fikir Kulübü - Yeni Üye Başvurusu!">
+                                    <input type="hidden" name="_template" value="table">
+
                                     <div class="row gtr-uniform gtr-50">
                                         <div class="col-6 col-12-xsmall">
                                             <input type="text" name="Ad_Soyad" id="name" placeholder="Adın Soyadın" required />
