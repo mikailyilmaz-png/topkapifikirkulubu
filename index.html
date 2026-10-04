@@ -2,6 +2,7 @@
 <!--
     Fikir Kulübü Özel Tasarımı
     Topkapı Üniversitesi Fikir Kulübü için "Aile ve Sosyal Network" vizyonuyla hazırlanmıştır.
+    Mobil ve Masaüstü Tam Uyumlu Responsive Sürüm.
 -->
 <html>
     <head>
@@ -13,7 +14,7 @@
         <!-- Özel Fontlar: Syne (Başlıklar) ve Outfit (Metinler) -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Syne:wght@500;700;800&display=swap" rel="stylesheet">
 
         <!-- Fikir Kulübü Özel Stil İlaveleri -->
         <style>
@@ -28,23 +29,22 @@
                 color: #e6edf3;
             }
 
-            /* --- TÜRKÇE KARAKTER KESİLME HATASI KESİN ÇÖZÜMÜ --- */
-            h1, h2, h3, h4, h5, h6, strong, b {
+            /* --- TÜRKÇE KARAKTER KESİLME HATASI DÜZELTMESİ --- */
+            h1, h2, h3, h4, h5, h6 {
                 font-family: 'Syne', sans-serif !important;
                 color: #ffffff;
-                letter-spacing: -0.02em;
-                line-height: 1.6 !important; /* Satır yüksekliği artırıldı */
-                padding-top: 12px !important; /* Üstten ekstra boşluk bırakıldı */
-                padding-bottom: 5px !important;
+                letter-spacing: -0.01em;
+                line-height: 1.4 !important;
+                padding-top: 4px !important;
+                padding-bottom: 4px !important;
                 overflow: visible !important;
-                display: block; /* Flex baskısı kaldırıldı */
             }
             
-            /* --- ÖZELLEŞTİRİLMİŞ SOL PANEL (SCROLL EKLENDİ) --- */
+            /* --- SOL PANEL (SCROLL EKLENDİ) --- */
             #header {
-                background: linear-gradient(180deg, rgba(11, 19, 43, 0.9) 0%, rgba(0, 0, 0, 0.9) 100%);
+                background: linear-gradient(180deg, rgba(11, 19, 43, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
                 border-right: 1px solid rgba(255,255,255,0.05);
-                backdrop-filter: blur(5px);
+                backdrop-filter: blur(8px);
                 overflow-y: auto !important; 
                 scrollbar-width: thin; 
                 scrollbar-color: rgba(0, 168, 255, 0.5) transparent;
@@ -61,12 +61,9 @@
                 background-color: rgba(0, 168, 255, 0.4);
                 border-radius: 10px;
             }
-            #header::-webkit-scrollbar-thumb:hover {
-                background-color: rgba(0, 168, 255, 0.8);
-            }
 
             #header h1 {
-                font-size: 1.5em;
+                font-size: 1.4em;
                 color: #e6edf3;
             }
             #header h1 strong {
@@ -79,27 +76,27 @@
                 background: transparent !important;
                 border: none !important;
                 padding: 0 !important;
-                margin-bottom: 1.5em;
+                margin-bottom: 1.2em;
                 display: inline-block;
             }
             #header .image.avatar img {
                 background: transparent !important;
                 border: none !important;
                 border-radius: 50% !important; 
-                width: 140px !important; 
-                height: 140px !important;
+                width: 130px !important; 
+                height: 130px !important;
                 object-fit: cover;
                 box-shadow: 0 0 25px rgba(0, 168, 255, 0.4); 
             }
 
             /* --- ETKİNLİK TAKVİMİ WIDGET --- */
             .event-widget {
-                background: rgba(11, 19, 43, 0.4);
+                background: rgba(11, 19, 43, 0.5);
                 backdrop-filter: blur(10px);
                 border: 1px solid rgba(0, 168, 255, 0.3);
                 border-radius: 16px;
                 padding: 1.2em;
-                margin-top: 2.5em; 
+                margin-top: 2em; 
                 cursor: pointer;
                 transition: all 0.3s ease;
                 text-align: left;
@@ -107,7 +104,7 @@
             }
             .event-widget:hover {
                 border-color: rgba(0, 168, 255, 0.8);
-                background: rgba(11, 19, 43, 0.6);
+                background: rgba(11, 19, 43, 0.7);
                 box-shadow: 0 4px 20px rgba(0, 168, 255, 0.2);
             }
             .event-widget-header {
@@ -116,7 +113,7 @@
                 justify-content: space-between;
             }
             .event-icon {
-                font-size: 1.8em;
+                font-size: 1.6em;
                 color: #00a8ff;
                 margin-right: 0.6em;
             }
@@ -135,7 +132,7 @@
             }
             .event-title {
                 color: #ffffff;
-                font-size: 1em;
+                font-size: 0.95em;
                 font-weight: 600;
                 font-family: 'Syne', sans-serif;
                 line-height: 1.2;
@@ -172,7 +169,7 @@
                 margin: 0 !important;
             }
             .event-list ul li {
-                font-size: 0.9em;
+                font-size: 0.85em;
                 color: #e6edf3;
                 margin-bottom: 1em;
                 padding-left: 0 !important;
@@ -191,8 +188,8 @@
                 backdrop-filter: blur(12px);
                 border: 1px solid rgba(255,255,255,0.06);
                 border-radius: 16px;
-                padding: 4em;
-                margin-bottom: 3em;
+                padding: 3.5em;
+                margin-bottom: 2.5em;
                 box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
                 transition: border-color 0.4s ease, box-shadow 0.4s ease;
             }
@@ -237,9 +234,9 @@
 
             /* İkon Kutuları */
             .feature-icon {
-                font-size: 2.5em;
+                font-size: 2.2em;
                 color: #00a8ff;
-                margin-bottom: 0.5em;
+                margin-bottom: 0.4em;
                 display: block;
                 transition: transform 0.3s ease, color 0.3s ease;
             }
@@ -251,20 +248,20 @@
             /* Yönetim Kadrosu Profil Tasarımı */
             .team-member {
                 text-align: center;
-                margin-bottom: 2.5em;
+                margin-bottom: 2em;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
             }
             .team-member img {
                 border-radius: 50%;
-                width: 160px;
-                height: 160px;
+                width: 140px;
+                height: 140px;
                 max-width: 100%;
                 object-fit: cover;
                 border: 3px solid rgba(0, 168, 255, 0.5);
                 box-shadow: 0 0 20px rgba(0, 168, 255, 0.2);
-                margin-bottom: 1em;
+                margin-bottom: 0.8em;
                 transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
             }
             .team-member img:hover {
@@ -276,17 +273,17 @@
             /* Resmi Olmayanlar İçin Boş Çerçeve */
             .empty-avatar {
                 border-radius: 50%;
-                width: 160px;
-                height: 160px;
+                width: 140px;
+                height: 140px;
                 max-width: 100%;
                 border: 3px dashed rgba(0, 168, 255, 0.4);
                 background: rgba(11, 19, 43, 0.4);
-                margin-bottom: 1em;
+                margin-bottom: 0.8em;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 color: rgba(0, 168, 255, 0.6);
-                font-size: 0.9em;
+                font-size: 0.85em;
                 font-weight: 600;
                 transition: all 0.3s ease;
             }
@@ -295,12 +292,15 @@
                 color: rgba(0, 168, 255, 1);
             }
 
-            /* İsim Kesilme Sorunu Çözümü İçin Ekstra Düzenleme */
+            /* KADRO İSİMLERİ TÜRKÇE KARAKTER DÜZELTMESİ */
             .team-member h3 {
+                font-family: 'Outfit', sans-serif !important;
+                font-weight: 700;
+                font-size: 1.1em;
+                line-height: 1.3 !important;
                 margin-bottom: 0.2em;
-                font-size: 1.15em;
-                line-height: 1.6 !important;
-                min-height: 3.5em; 
+                padding: 2px 0 !important;
+                overflow: visible !important;
                 width: 100%;
             }
             .team-member p {
@@ -332,10 +332,128 @@
                 border: 1px solid rgba(0, 168, 255, 0.3) !important;
                 color: white !important;
                 border-radius: 6px !important;
+                width: 100%;
             }
             input[type="text"]:focus, input[type="email"]:focus, input[type="tel"]:focus, textarea:focus {
                 border-color: #00a8ff !important;
                 box-shadow: 0 0 0 2px rgba(0, 168, 255, 0.2) !important;
+            }
+
+            /* =========================================================
+               MOBİL VE TABLET UYUMLULUK (RESPONSIVE) ÖZEL CSS
+               ========================================================= */
+
+            @media screen and (max-width: 980px) {
+                /* Sol paneli mobilde üste sabitlemeden düzgünce yerleştir */
+                #header {
+                    position: relative !important;
+                    width: 100% !important;
+                    top: 0 !important;
+                    left: 0 !important;
+                    height: auto !important;
+                    text-align: center !important;
+                    padding: 2.5em 1.5em 2em 1.5em !important;
+                    border-right: none !important;
+                    border-bottom: 1px solid rgba(0, 168, 255, 0.2);
+                }
+
+                #header .inner {
+                    max-width: 600px;
+                    margin: 0 auto;
+                }
+
+                #header h1 {
+                    font-size: 1.25em !important;
+                    line-height: 1.5 !important;
+                }
+
+                #header .image.avatar img {
+                    width: 110px !important;
+                    height: 110px !important;
+                }
+
+                /* Ana içerik alanını tam genişlik yap */
+                #main {
+                    margin-left: 0 !important;
+                    width: 100% !important;
+                    padding: 1.5em 1em !important;
+                }
+
+                #main > section {
+                    padding: 2em 1.5em !important;
+                    margin-bottom: 1.5em !important;
+                    border-radius: 12px !important;
+                }
+
+                h2 {
+                    font-size: 1.5em !important;
+                }
+            }
+
+            @media screen and (max-width: 736px) {
+                #main > section {
+                    padding: 1.5em 1em !important;
+                }
+
+                /* Takvim Widget Mobilde Daraltma */
+                .event-widget {
+                    padding: 1em !important;
+                    margin-top: 1.5em !important;
+                }
+
+                .event-title {
+                    font-size: 0.9em !important;
+                }
+
+                .event-date {
+                    font-size: 0.7em !important;
+                }
+
+                .event-icon {
+                    font-size: 1.3em !important;
+                }
+
+                /* Yönetim Kadrosu Avatarları Mobilde Sığacak Şekilde Küçültme */
+                .team-member img, .empty-avatar {
+                    width: 105px !important;
+                    height: 105px !important;
+                    font-size: 0.8em !important;
+                }
+
+                .team-member h3 {
+                    font-size: 0.95em !important;
+                }
+
+                .team-member p {
+                    font-size: 0.8em !important;
+                }
+
+                /* Butonlar Mobilde Rahat Dokunulabilir Yapma */
+                input[type="submit"], .button, .read-more-btn {
+                    width: 100% !important;
+                    text-align: center !important;
+                    justify-content: center !important;
+                }
+            }
+
+            @media screen and (max-width: 480px) {
+                body {
+                    font-size: 14px !important;
+                }
+
+                #main > section {
+                    padding: 1.2em 0.8em !important;
+                }
+
+                /* Çok dar ekranlarda kadro resimlerinin taşmaması için ölçek */
+                .team-member img, .empty-avatar {
+                    width: 90px !important;
+                    height: 90px !important;
+                }
+
+                .feature-icon {
+                    font-size: 1.8em !important;
+                }
             }
         </style>
     </head>
@@ -497,7 +615,7 @@
 
                 <!-- Bölüm 4: İletişim Formu -->
                     <section id="four">
-                        <h2>Fikrini Ne</h2>
+                        <h2>Aramıza Katıl</h2>
                         <p>Sadece kayıt olmak veya iş konuşmak için değil; gelip bizimle tanışmak, dertleşmek, yeni bir hobi edinmek veya sadece yalnız kalmamak için kapımız sana her zaman açık. Aşağıdaki formu doldur, kulüp odamıza uğra ve bu büyük ailenin ayrılmaz bir parçası ol.</p>
                         <div class="row">
                             <div class="col-8 col-12-small">
@@ -507,13 +625,13 @@
                                     
                                     <div class="row gtr-uniform gtr-50">
                                         <div class="col-6 col-12-xsmall">
-                                            <input type="text" name="Ad_Soyad" id="name" placeholder="          Adın Soyadın" required />
+                                            <input type="text" name="Ad_Soyad" id="name" placeholder="Adın Soyadın" required />
                                         </div>
                                         <div class="col-6 col-12-xsmall">
-                                            <input type="email" name="E_Posta" id="email" placeholder="       E-posta Adresin" required />
+                                            <input type="email" name="E_Posta" id="email" placeholder="E-posta Adresin" required />
                                         </div>
                                         <div class="col-12">
-                                            <input type="tel" name="Telefon" id="phone" placeholder="              Telefon Numaran " required />
+                                            <input type="tel" name="Telefon" id="phone" placeholder="Telefon Numaran" required />
                                         </div>
                                         <div class="col-12">
                                             <textarea name="Mesaj" id="message" placeholder="Bize kısaca kendinden, hobilerinden veya beklentilerinden bahset..." rows="4" required></textarea>
@@ -535,12 +653,10 @@
                                     </li>
                                     <li>
                                         <h3 class="icon solid fa-envelope"><span class="label">E-posta</span></h3>
-                                        <!-- Mail adresine tıklandığında direkt mail gönderme ekranı açılır -->
                                         <a href="mailto:fikirtopkapi@gmail.com">fikirtopkapi@gmail.com</a>
                                     </li>
                                     <li>
                                         <h3 class="icon brands fa-instagram"><span class="label">Instagram</span></h3>
-                                        <!-- target="_blank" sayesinde Instagram yeni sekmede açılır -->
                                         <a href="https://www.instagram.com/fikirtopkapi/" target="_blank">@fikirtopkapi</a>
                                     </li>
                                 </ul>
