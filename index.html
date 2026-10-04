@@ -28,7 +28,7 @@
                 background-attachment: fixed !important;
                 color: #e2e8f0;
                 font-family: 'Outfit', sans-serif !important;
-                font-size: 17px; /* Bilgisayarda rahat okunan büyük yazı */
+                font-size: 17px;
                 line-height: 1.7;
             }
 
@@ -362,15 +362,9 @@
                 box-shadow: 0 0 15px rgba(0, 243, 255, 0.35) !important;
             }
 
-            /* =========================================================
-               RESPONSIVE (MOBİL & TABLET) NİZAMİ UYUM
-               ========================================================= */
-
+            /* RESPONSIVE MASAÜSTÜ & MOBİL UYUM */
             @media screen and (max-width: 980px) {
-                body {
-                    font-size: 16px;
-                }
-
+                body { font-size: 16px; }
                 #header {
                     position: relative !important;
                     width: 100% !important;
@@ -382,72 +376,22 @@
                     border-right: none !important;
                     border-bottom: 1px solid rgba(0, 243, 255, 0.3);
                 }
-
-                #header .inner {
-                    max-width: 650px;
-                    margin: 0 auto;
-                }
-
-                #header h1 {
-                    font-size: 1.4em !important;
-                }
-
-                #header .image.avatar img {
-                    width: 130px !important;
-                    height: 130px !important;
-                }
-
-                #main {
-                    margin-left: 0 !important;
-                    width: 100% !important;
-                    padding: 1.5em 1em !important;
-                }
-
-                #main > section {
-                    padding: 2.5em 1.8em !important;
-                    margin-bottom: 2em !important;
-                    border-radius: 16px !important;
-                }
-
-                h2 {
-                    font-size: 1.8em !important;
-                }
+                #header .inner { max-width: 650px; margin: 0 auto; }
+                #header h1 { font-size: 1.4em !important; }
+                #header .image.avatar img { width: 130px !important; height: 130px !important; }
+                #main { margin-left: 0 !important; width: 100% !important; padding: 1.5em 1em !important; }
+                #main > section { padding: 2.5em 1.8em !important; margin-bottom: 2em !important; border-radius: 16px !important; }
+                h2 { font-size: 1.8em !important; }
             }
 
             @media screen and (max-width: 736px) {
-                body {
-                    font-size: 15px;
-                }
-
-                #main > section {
-                    padding: 2em 1.2em !important;
-                }
-
-                h2 {
-                    font-size: 1.55em !important;
-                }
-
-                /* Mobil Kadro Fotoğrafları */
-                .team-member {
-                    padding: 0 4px !important;
-                    margin-bottom: 2em !important;
-                }
-
-                .team-member img, .empty-avatar {
-                    width: 120px !important;
-                    height: 120px !important;
-                    margin-bottom: 0.7em !important;
-                }
-
-                .team-member h3 {
-                    font-size: 1.05em !important;
-                }
-
-                .team-member p {
-                    font-size: 0.85em !important;
-                }
-
-                /* Butonlar */
+                body { font-size: 15px; }
+                #main > section { padding: 2em 1.2em !important; }
+                h2 { font-size: 1.55em !important; }
+                .team-member { padding: 0 4px !important; margin-bottom: 2em !important; }
+                .team-member img, .empty-avatar { width: 120px !important; height: 120px !important; margin-bottom: 0.7em !important; }
+                .team-member h3 { font-size: 1.05em !important; }
+                .team-member p { font-size: 0.85em !important; }
                 input[type="submit"], .button, .read-more-btn {
                     width: 100% !important;
                     text-align: center !important;
@@ -515,12 +459,10 @@
                         </header>
                         <p>Topkapı Üniversitesi Fikir Kulübü olarak bizler, klasik bir öğrenci topluluğundan çok daha fazlasıyız; biz kampüsün en sıcak, en samimi ve en büyük ailesiyiz. Temel amacımız, üniversite yaşamının getirdiği stresten ve gençleri içine çeken zararlı alışkanlıklardan uzaklaşarak, üyelerimize yepyeni hobiler kazandırmak, onlara farklı vizyonlar katmak ve etik değerlere sahip, topluma faydalı bireyler olma yolunda sağlam bir zemin hazırlamaktır.</p>
                         
-                        <!-- Gizlenmiş İçerik -->
                         <div class="read-more-content" id="aboutMoreText">
                             <p>Hiçbir siyasi görüşe, kutuplaşmaya veya ayrımcılığa yer vermeyen, tamamen tarafsız, kucaklayıcı ve eşitlikçi bir yapıya sahibiz. Bizim için asıl mesele, salt akademik veya profesyonel hırslar peşinde koşmak değil; iyi günde ve kötü günde birbirinin yanında duran, dertleşen, birlikte gülen ve birlikte gelişen sağlam bir dostluk bağı kurmaktır. Sadece kariyerinize değil, karakterinize ve ruhunuza da dokunacak etkinliklerle, hayat boyu sürecek dostlukların temellerini burada, bu çatının altında atıyoruz. Kendini yalnız hissetmediğin, fikirlerini, hobilerini ve hayallerini özgürce paylaşabildiğin ve günün sonunda "İyi ki buradayım" diyeceğin bu büyük aileye seni de bekliyoruz.</p>
                         </div>
                         
-                        <!-- Devamını Oku Butonu -->
                         <button class="read-more-btn" id="readMoreBtn" onclick="toggleReadMore()">
                             Devamını Oku <i class="fas fa-chevron-down"></i>
                         </button>
@@ -614,18 +556,18 @@
                         </div>
                     </section>
 
-                <!-- Bölüm 4: İletişim Formu -->
+                <!-- Bölüm 4: İletişim Formu (Web3Forms Entegreli) -->
                     <section id="four">
                         <h2>Aramıza Katıl</h2>
                         <p>Sadece kayıt olmak için değil; gelip bizimle tanışmak, dertleşmek veya yeni bir hobi edinmek için kapımız sana her zaman açık. Aşağıdaki formu doldur, kulüp odamıza uğra ve bu büyük ailenin parçası ol.</p>
                         <div class="row">
                             <div class="col-8 col-12-small">
                                 
-                                <form action="https://formsubmit.co/fikirtopkapi@gmail.com" method="POST">
-                                    <!-- FormSubmit Takılmasını Önleyen Gizli Ayarlar -->
-                                    <input type="hidden" name="_captcha" value="false">
-                                    <input type="hidden" name="_subject" value="Fikir Kulübü - Yeni Üye Başvurusu!">
-                                    <input type="hidden" name="_template" value="table">
+                                <form action="https://api.web3forms.com/submit" method="POST">
+                                    <!-- Web3Forms Access Key Entegre Edildi -->
+                                    <input type="hidden" name="access_key" value="6dc581ae-875b-423b-8f2b-566d1ceda265">
+                                    <input type="hidden" name="subject" value="Fikir Kulübü - Yeni Üye Başvurusu!">
+                                    <input type="hidden" name="from_name" value="Fikir Kulübü Web Sitesi">
 
                                     <div class="row gtr-uniform gtr-50">
                                         <div class="col-6 col-12-xsmall">
