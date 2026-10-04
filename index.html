@@ -650,17 +650,16 @@
 
                 function toggleReadMore() {
                     var moreText = document.getElementById("aboutMoreText");
-                    var btnText = document.getElementById("readMoreBtn");
-
+                    var btn = document.getElementById("readMoreBtn");
+                    
                     if (moreText.classList.contains("expanded")) {
                         moreText.classList.remove("expanded");
-                        btnText.innerHTML = 'Devamını Oku <i class="fas fa-chevron-down"></i>';
+                        btn.innerHTML = 'Devamını Oku <i class="fas fa-chevron-down"></i>';
                     } else {
                         moreText.classList.add("expanded");
-                        btnText.innerHTML = 'Daha Az Göster <i class="fas fa-chevron-up"></i>';
+                        btn.innerHTML = 'Daha Az Göster <i class="fas fa-chevron-up"></i>';
                     }
                 }
             </script>
-
     </body>
 </html>
